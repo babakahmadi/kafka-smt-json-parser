@@ -16,6 +16,16 @@ Properties:
 |`field.name`| field name if we want extract json string from the field | String | `null`  | Medium     |
 |`filtered.fields`| fields with their types(`field1:type1,field2:type2`)     | String | ``  | High       |
 
+Build:
+```
+mvn clean package
+```
+then `target/kafka-smt-json-parser-1.0-SNAPSHOT.jar` will be the file you need to add under one of the directories
+listed in the `plugin.path` property in the Connect worker configuration file as shown below:
+```
+plugin.path=/usr/local/share/kafka/plugins
+```
+
 Example on how to add to your connector:
 ```
 transforms=jsonparser
@@ -32,6 +42,9 @@ ToDO:
  * Not replace the whole record with new one
  * support map, array and struct in a recursive for complex objects
  * upgrade junit4 to junit5
+
+Reference:
+    * https://docs.confluent.io/platform/current/connect/transforms/custom.html
 
 Lots borrowed from the Apache Kafka® `InsertField` SMT
 
